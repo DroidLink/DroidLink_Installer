@@ -1,0 +1,12 @@
+{
+  "universal": {
+    "name": "DroidLink Universal Slave",
+    "versions": [
+      {
+        "version": "v0",
+        "file": "bins/DroidLink-Universal-v0.bin",
+        "address": "0x10000"
+      }
+    ]
+  }
+}
