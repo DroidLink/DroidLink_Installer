@@ -16,9 +16,9 @@ async function flashOneImage({ imageBytes, addressHex, log }) {
   const port = await navigator.serial.requestPort();
   await port.open({ baudRate: 115200 });
 
-  const transport = new window.esptool.Transport(port);
+  const transport = new Transport(port);
 
-  const loader = new window.esptool.ESPLoader({
+  const loader = new ESPLoader({
     transport,
     baudrate: 115200,
     terminal: {
