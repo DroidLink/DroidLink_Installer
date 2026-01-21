@@ -18,7 +18,8 @@ async function flashOneImage({ imageBytes, addressHex, log }) {
   const port = await navigator.serial.requestPort();
   await port.open({ baudRate: 115200 });
 
-  const transport = new Transport(port);
+  const transport = new window.Transport(port);
+
 
   // ESPLoader will auto-detect chip. Works for ESP32 + ESP32-S3.
   const loader = new ESPLoader({
