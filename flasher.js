@@ -2,8 +2,6 @@
 // Minimal WebSerial flasher: writes ONE binary to ONE flash offset.
 // Uses esptool-js from CDN (loaded in index.html).
 
-
-
 function hexToInt(h) {
   if (typeof h !== "string") return h;
   return parseInt(h.startsWith("0x") ? h : "0x" + h, 16);
@@ -18,9 +16,9 @@ async function flashOneImage({ imageBytes, addressHex, log }) {
   const port = await navigator.serial.requestPort();
   await port.open({ baudRate: 115200 });
 
-  const transport = new Transport(port);
+  const transport = new window.esptool.Transport(port);
 
-  const loader = new ESPLoader({
+  const loader = new window.esptool.ESPLoader({
     transport,
     baudrate: 115200,
     terminal: {
