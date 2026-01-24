@@ -6,15 +6,57 @@
 
     <style>
       body {
-        background: #000;
-        color: #0f0;
+        background: #0b0b0b;
+        color: #e0e0e0;
         font-family: monospace;
       }
+
+      h1 {
+        color: #cfcfcf;
+      }
+
       .card {
-        border: 1px solid #0f0;
+        border: 1px solid #333;
         padding: 20px;
         border-radius: 12px;
-        width: 320px;
+        width: 340px;
+        background: #121212;
+      }
+
+      .firmware-select button {
+        width: 100%;
+        margin-bottom: 8px;
+        padding: 10px;
+        background: #1e1e1e;
+        color: #e0e0e0;
+        border: 1px solid #333;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+
+      .firmware-select button.active {
+        border-color: #4da3ff;
+        color: #4da3ff;
+      }
+
+      input {
+        width: 100%;
+        background: #1a1a1a;
+        color: #e0e0e0;
+        border: 1px solid #333;
+        padding: 6px;
+        border-radius: 4px;
+      }
+
+      .install-btn button {
+        width: 100%;
+        padding: 12px;
+        background: #4da3ff;
+        color: #000;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
       }
     </style>
 
@@ -28,7 +70,21 @@
     <h1>DroidLink Installer</h1>
 
     <div class="card">
-      <p>Universal Slave Firmware</p>
+      <p>Select Firmware</p>
+
+      <div class="firmware-select">
+        <button onclick="selectFirmware('MASTER')" id="btn-master">
+          Master Controller
+        </button>
+        <button onclick="selectFirmware('SLAVE')" id="btn-slave">
+          Universal Slave
+        </button>
+        <button onclick="selectFirmware('DISPLAY')" id="btn-display">
+          Display UI
+        </button>
+      </div>
+
+      <br>
 
       <label>
         License Key:
@@ -37,18 +93,34 @@
 
       <br><br>
 
-      <esp-web-install-button id="install">
-        <button slot="activate">Install Universal Slave</button>
+      <esp-web-install-button id="install" class="install-btn">
+        <button slot="activate">Install Firmware</button>
       </esp-web-install-button>
     </div>
 
     <script>
       const button = document.getElementById("install");
+      let selectedFirmware = null;
+
+      function selectFirmware(type) {
+        selectedFirmware = type;
+
+        // visual state
+        ["master", "slave", "display"].forEach(id => {
+          document.getElementById("btn-" + id).classList.remove("active");
+        });
+        document.getElementById("btn-" + type.toLowerCase()).classList.add("active");
+      }
 
       button.addEventListener("click", () => {
         const license = document.getElementById("license").value.trim();
         if (!license) {
           alert("License key required");
+          return;
+        }
+
+        if (!selectedFirmware) {
+          alert("Select firmware type");
           return;
         }
 
@@ -62,9 +134,9 @@
           return originalFetch(url, options);
         };
 
-        // Point to your Pages manifest
+        // Choose manifest based on firmware
         button.manifest =
-          "https://droidlink.github.io/DroidLink_Installer/manifest.json";
+          `https://droidlink.github.io/DroidLink_Installer/manifest_${selectedFirmware.toLowerCase()}.json`;
       });
     </script>
   </body>
