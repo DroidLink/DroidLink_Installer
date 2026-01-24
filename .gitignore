@@ -1,0 +1,3 @@
+# Firmware binaries (never commit)
+bins/
+*.bin
