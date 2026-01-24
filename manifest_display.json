@@ -6,19 +6,19 @@
       "chipFamily": "ESP32-S3",
       "parts": [
         {
-          "path": "https://droidlink-gatekeeper.fmoore1124.workers.dev/download/file?product=display&version=1.0.0&name=bootloader.bin",
+          "path": "https://droidlink-gatekeeper.fmoore1124.workers.dev/download/file?product=display&version=V1.0&name=bootloader.bin",
           "offset": 4096
         },
         {
-          "path": "https://droidlink-gatekeeper.fmoore1124.workers.dev/download/file?product=display&version=1.0.0&name=partitions.bin",
+          "path": "https://droidlink-gatekeeper.fmoore1124.workers.dev/download/file?product=display&version=V1.0&name=partitions.bin",
           "offset": 32768
         },
         {
-          "path": "https://droidlink-gatekeeper.fmoore1124.workers.dev/download/file?product=display&version=1.0.0&name=firmware.bin",
+          "path": "https://droidlink-gatekeeper.fmoore1124.workers.dev/download/file?product=display&version=V1.0&name=firmware.bin",
           "offset": 65536
         },
         {
-          "path": "https://droidlink-gatekeeper.fmoore1124.workers.dev/download/file?product=display&version=1.0.0&name=spiffs.bin",
+          "path": "https://droidlink-gatekeeper.fmoore1124.workers.dev/download/file?product=display&version=V1.0&name=spiffs.bin",
           "offset": 2686976
         }
       ]
