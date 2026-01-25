@@ -88,6 +88,11 @@
         font-weight: bold;
       }
 
+      button:disabled {
+        opacity: 0.45; /* fade it */
+        cursor: not-allowed; /* visual cue */
+      }
+
       @media (max-width: 480px) {
         .card {
           width: 90%;
@@ -109,7 +114,7 @@
         <p>Select Firmware</p>
 
         <div class="firmware-select">
-          <button onclick="selectFirmware('MASTER')" id="btn-master">
+          <button onclick="selectFirmware('MASTER')" id="btn-master" disabled>
             Master Controller
           </button>
           <button onclick="selectFirmware('SLAVE')" id="btn-slave">
