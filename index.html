@@ -4,125 +4,7 @@
     <meta charset="utf-8" />
     <title>DroidLink Installer</title>
 
-    <style>
-      body {
-        margin: 0;
-        min-height: 100vh;
-        background: radial-gradient(circle at top, #111 0%, #000 60%);
-        color: #e0e0e0;
-        font-family: monospace;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .installer {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-
-      h1 {
-        margin-bottom: 40px;
-        font-size: 3.0rem;
-        text-align: center;
-        color: #e6e6e6;
-      }
-
-      /* Logo under header */
-      .logo {
-        width: 120px;
-        max-width: 60%;
-        height: auto;
-        margin-bottom: 24px;
-
-        filter: drop-shadow(0 0 10px rgba(77, 163, 255, 0.4));
-      }
-
-      .card {
-        border: 1px solid #2a2a2a;
-        padding: 24px;
-        border-radius: 14px;
-        width: 360px;
-        background: linear-gradient(180deg, #141414, #0e0e0e);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6),
-          inset 0 1px 0 rgba(255, 255, 255, 0.03);
-      }
-
-      .card p {
-        margin-top: 0;
-        margin-bottom: 12px;
-        color: #aaa;
-      }
-
-      .firmware-select button {
-        width: 100%;
-        margin-bottom: 10px;
-        padding: 12px;
-        background: #181818;
-        color: #ddd;
-        border: 1px solid #2c2c2c;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: all 0.15s ease;
-      }
-
-      .firmware-select button:hover {
-        border-color: #4da3ff;
-      }
-
-      .firmware-select button.active {
-        background: #111c2a;
-        border-color: #4da3ff;
-        color: #4da3ff;
-      }
-
-      input {
-        width: 100%;
-        background: #1a1a1a;
-        color: #e0e0e0;
-        border: 1px solid #333;
-        padding: 6px;
-        border-radius: 4px;
-      }
-
-      .install-btn button {
-        width: 100%;
-        padding: 12px;
-        background: #4da3ff;
-        color: #000;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-        font-weight: bold;
-      }
-
-      .footer-link {
-        margin-top: 16px;
-        font-size: 0.85rem;
-        opacity: 0.8;
-      }
-
-      .footer-link a {
-        color: #4da3ff;
-        text-decoration: none;
-      }
-
-      .footer-link a:hover {
-        text-decoration: underline;
-      }
-
-      @media (max-width: 480px) {
-        .card {
-          width: 90%;
-        }
-
-        .logo {
-          width: 96px;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="./styles.css" />
 
     <script
       type="module"
@@ -135,7 +17,7 @@
       <h1>DroidLink Installer</h1>
 
       <!-- Logo under header -->
-      <img src="R2.png" alt="DroidLink Logo" class="logo" />
+      <img src="images/R2.png" alt="DroidLink Logo" class="logo" />
 
       <div class="card">
         <p>Select Firmware</p>
@@ -210,7 +92,7 @@
           return originalFetch(url, options);
         };
 
-        button.manifest = `https://droidlink.github.io/DroidLink_Installer/manifest_${selectedFirmware.toLowerCase()}.json`;
+        button.manifest = `https://droidlink.github.io/DroidLink_Installer/manifest/${selectedFirmware.toLowerCase()}.json`;
       });
     </script>
   </body>
