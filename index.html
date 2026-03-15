@@ -104,7 +104,25 @@
           return originalFetch(url, options);
         };
 
-        button.manifest = `https://droidlink.github.io/DroidLink_Installer/manifest/${selectedFirmware.toLowerCase()}.json`;
+        if (selectedFirmware === "MASTER") {
+          button.manifest =
+            "https://droidlink.github.io/DroidLink_Installer/manifest/master.json";
+        }
+
+        if (selectedFirmware === "SLAVE") {
+          button.manifest =
+            "https://droidlink.github.io/DroidLink_Installer/manifest/slave.json";
+        }
+
+        if (selectedFirmware === "DISPLAY_INSTALL") {
+          button.manifest =
+            "https://droidlink.github.io/DroidLink_Installer/manifest/display.json";
+        }
+
+        if (selectedFirmware === "DISPLAY_UPDATE") {
+          button.manifest =
+            "https://droidlink.github.io/DroidLink_Installer/manifest/display-update.json";
+        }
       });
     </script>
   </body>
