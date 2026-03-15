@@ -92,7 +92,14 @@
           return originalFetch(url, options);
         };
 
-        button.manifest = `https://droidlink.github.io/DroidLink_Installer/manifest/${selectedFirmware.toLowerCase()}.json`;
+        // ONLY CHANGE: Display uses update manifest
+        if (selectedFirmware === "DISPLAY") {
+          button.manifest =
+            "https://droidlink.github.io/DroidLink_Installer/manifest/display-update.json";
+        } else {
+          button.manifest =
+            `https://droidlink.github.io/DroidLink_Installer/manifest/${selectedFirmware.toLowerCase()}.json`;
+        }
       });
     </script>
   </body>
