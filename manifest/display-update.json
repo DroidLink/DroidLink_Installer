@@ -1,18 +1,10 @@
 {
-  "name": "DroidLink Display",
+  "name": "DroidLink Display Update",
   "version": "V1.2",
   "builds": [
     {
       "chipFamily": "ESP32-S3",
       "parts": [
-        {
-          "path": "https://droidlink-gatekeeper.fmoore1124.workers.dev/download/file?product=display&version=V1.2&name=bootloader.bin",
-          "offset": 0
-        },
-        {
-          "path": "https://droidlink-gatekeeper.fmoore1124.workers.dev/download/file?product=display&version=V1.2&name=partitions.bin",
-          "offset": 32768
-        },
         {
           "path": "https://droidlink-gatekeeper.fmoore1124.workers.dev/download/file?product=display&version=V1.2&name=firmware.bin",
           "offset": 65536
