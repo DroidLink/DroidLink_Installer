@@ -26,17 +26,11 @@
           <button onclick="selectFirmware('MASTER')" id="btn-master">
             Master Controller
           </button>
-
           <button onclick="selectFirmware('SLAVE')" id="btn-slave">
             Universal Slave
           </button>
-
-          <button onclick="selectFirmware('DISPLAY_INSTALL')" id="btn-display-install">
-            Display Install
-          </button>
-
-          <button onclick="selectFirmware('DISPLAY_UPDATE')" id="btn-display-update">
-            Display Update
+          <button onclick="selectFirmware('DISPLAY')" id="btn-display">
+            Display UI
           </button>
         </div>
 
@@ -68,19 +62,13 @@
       function selectFirmware(type) {
         selectedFirmware = type;
 
-        ["master","slave","display-install","display-update"].forEach((id) => {
-          const el = document.getElementById("btn-" + id);
-          if (el) el.classList.remove("active");
+        ["master", "slave", "display"].forEach((id) => {
+          document.getElementById("btn-" + id).classList.remove("active");
         });
 
-        const btnMap = {
-          MASTER: "btn-master",
-          SLAVE: "btn-slave",
-          DISPLAY_INSTALL: "btn-display-install",
-          DISPLAY_UPDATE: "btn-display-update"
-        };
-
-        document.getElementById(btnMap[type]).classList.add("active");
+        document
+          .getElementById("btn-" + type.toLowerCase())
+          .classList.add("active");
       }
 
       button.addEventListener("click", () => {
@@ -104,25 +92,8 @@
           return originalFetch(url, options);
         };
 
-        if (selectedFirmware === "MASTER") {
-          button.manifest =
-            "https://droidlink.github.io/DroidLink_Installer/manifest/master.json";
-        }
-
-        if (selectedFirmware === "SLAVE") {
-          button.manifest =
-            "https://droidlink.github.io/DroidLink_Installer/manifest/slave.json";
-        }
-
-        if (selectedFirmware === "DISPLAY_INSTALL") {
-          button.manifest =
-            "https://droidlink.github.io/DroidLink_Installer/manifest/display.json";
-        }
-
-        if (selectedFirmware === "DISPLAY_UPDATE") {
-          button.manifest =
-            "https://droidlink.github.io/DroidLink_Installer/manifest/display-update.json";
-        }
+        button.manifest =
+          `https://droidlink.github.io/DroidLink_Installer/manifest/${selectedFirmware.toLowerCase()}.json`;
       });
     </script>
   </body>
