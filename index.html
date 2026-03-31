@@ -30,6 +30,12 @@
           <button onclick="selectFirmware('DISPLAY')" id="btn-display">
             Display UI
           </button>
+          <button
+            onclick="selectFirmware('DISPLAY_AMOLED')"
+            id="btn-display_amoled"
+          >
+            Display AMOLED
+          </button>
         </div>
 
         <br />
@@ -60,7 +66,7 @@
       function selectFirmware(type) {
         selectedFirmware = type;
 
-        ["master", "slave", "display"].forEach((id) => {
+        ["master", "slave", "display", "display_amoled"].forEach((id) => {
           document.getElementById("btn-" + id).classList.remove("active");
         });
 
