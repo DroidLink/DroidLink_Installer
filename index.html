@@ -29,8 +29,15 @@
           <button onclick="selectFirmware('SLAVE')" id="btn-slave">
             Universal Slave
           </button>
-          <button onclick="selectFirmware('DISPLAY')" id="btn-display">
-            Display UI
+          <button
+            onclick="selectFirmware('DISPLAY')"
+            id="btn-display_legacy"
+          >
+            Display (Legacy) Small
+          </button>
+
+          <button onclick="selectFirmware('DISPLAY_AMOLED')" id="btn-display_amoled">
+            Display (AMOLED) Large
           </button>
         </div>
 
@@ -62,7 +69,7 @@
       function selectFirmware(type) {
         selectedFirmware = type;
 
-        ["master", "slave", "display"].forEach((id) => {
+        ["master", "slave", "display", "display_legacy"].forEach((id) => {
           document.getElementById("btn-" + id).classList.remove("active");
         });
 
@@ -92,8 +99,7 @@
           return originalFetch(url, options);
         };
 
-        button.manifest =
-          `https://droidlink.github.io/DroidLink_Installer/manifest/${selectedFirmware.toLowerCase()}.json`;
+        button.manifest = `https://droidlink.github.io/DroidLink_Installer/manifest/${selectedFirmware.toLowerCase()}.json`;
       });
     </script>
   </body>
