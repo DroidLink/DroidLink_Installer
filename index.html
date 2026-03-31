@@ -62,45 +62,51 @@
       </div>
     </div>
 
-    <script>
-      const button = document.getElementById("install");
-      let selectedFirmware = null;
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const button = document.getElementById("install");
+    let selectedFirmware = null;
 
-      function selectFirmware(type) {
-        selectedFirmware = type;
+    function selectFirmware(type) {
+      selectedFirmware = type;
 
-        ["master", "slave", "display", "display_legacy"].forEach((id) => {
-          document.getElementById("btn-" + id).classList.remove("active");
-        });
+      ["master", "slave", "display", "display_legacy"].forEach((id) => {
+        document.getElementById("btn-" + id).classList.remove("active");
+      });
 
-        document
-          .getElementById("btn-" + type.toLowerCase())
-          .classList.add("active");
+      document
+        .getElementById("btn-" + type.toLowerCase())
+        .classList.add("active");
+    }
+
+    window.selectFirmware = selectFirmware;
+
+    button.addEventListener("click", () => {
+      const license = document.getElementById("license").value.trim();
+
+      if (!license) {
+        alert("License key required");
+        return;
       }
 
-      button.addEventListener("click", () => {
-        const license = document.getElementById("license").value.trim();
-        if (!license) {
-          alert("License key required");
-          return;
-        }
+      if (!selectedFirmware) {
+        alert("Select firmware type");
+        return;
+      }
 
-        if (!selectedFirmware) {
-          alert("Select firmware type");
-          return;
-        }
+      const originalFetch = window.fetch;
 
-        const originalFetch = window.fetch;
-        window.fetch = (url, options = {}) => {
-          options.headers = {
-            ...(options.headers || {}),
-            "x-license-key": license,
-          };
-          return originalFetch(url, options);
+      window.fetch = (url, options = {}) => {
+        options.headers = {
+          ...(options.headers || {}),
+          "x-license-key": license,
         };
+        return originalFetch(url, options);
+      };
 
-        button.manifest = `https://droidlink.github.io/DroidLink_Installer/manifest/${selectedFirmware.toLowerCase()}.json`;
-      });
-    </script>
+      button.manifest = `https://droidlink.github.io/DroidLink_Installer/manifest/${selectedFirmware.toLowerCase()}.json`;
+    });
+  });
+</script>
   </body>
 </html>
