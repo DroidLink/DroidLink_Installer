@@ -12,35 +12,89 @@
   <body>
     <div class="installer">
       <h1>DroidLink Installer</h1>
-      <!-- Logo under header -->
+
       <img src="images/R2.png" alt="DroidLink Logo" class="logo" />
+
       <div class="card">
         <p>Select Firmware</p>
+
         <div class="firmware-select">
           <button onclick="selectFirmware('MASTER')" id="btn-master">
             Master Controller
           </button>
+
           <button onclick="selectFirmware('SLAVE')" id="btn-slave">
             Universal Slave
           </button>
+
           <button onclick="selectFirmware('DISPLAY')" id="btn-display">
             Display UI
           </button>
         </div>
+
         <br />
-        <label> License Key: <input id="license" /> </label> <br /><br />
+
+        <label>
+          License Key:
+          <input id="license" />
+        </label>
+
+        <br /><br />
+
         <esp-web-install-button id="install" class="install-btn">
           <button slot="activate">Install Firmware</button>
         </esp-web-install-button>
       </div>
+
       <div class="footer-link">
-        <a href="https://linktr.ee/droidlink" target="_blank" rel="noopener">
+        <a href="https://linktr.ee/droidlink" target="_blank">
           Click Here for Part list
         </a>
       </div>
     </div>
+
     <script>
-      const button = document.getElementById("install"); let selectedFirmware = null; function selectFirmware(type) { selectedFirmware = type; ["master", "slave", "display"].forEach((id) => { document.getElementById("btn-" + id).classList.remove("active"); }); document .getElementById("btn-" + type.toLowerCase()) .classList.add("active"); } button.addEventListener("click", () => { const license = document.getElementById("license").value.trim(); if (!license) { alert("License key required"); return; } if (!selectedFirmware) { alert("Select firmware type"); return; } const originalFetch = window.fetch; window.fetch = (url, options = {}) => { options.headers = { ...(options.headers || {}), "x-license-key": license, }; return originalFetch(url, options); }; button.manifest = https://droidlink.github.io/DroidLink_Installer/manifest/${selectedFirmware.toLowerCase()}.json; });
+      const button = document.getElementById("install");
+      let selectedFirmware = null;
+
+      function selectFirmware(type) {
+        selectedFirmware = type;
+
+        ["master", "slave", "display"].forEach((id) => {
+          document.getElementById("btn-" + id).classList.remove("active");
+        });
+
+        document
+          .getElementById("btn-" + type.toLowerCase())
+          .classList.add("active");
+      }
+
+      button.addEventListener("click", () => {
+        const license = document.getElementById("license").value.trim();
+
+        if (!license) {
+          alert("License key required");
+          return;
+        }
+
+        if (!selectedFirmware) {
+          alert("Select firmware type");
+          return;
+        }
+
+        // Inject license header
+        const originalFetch = window.fetch;
+        window.fetch = (url, options = {}) => {
+          options.headers = {
+            ...(options.headers || {}),
+            "x-license-key": license,
+          };
+          return originalFetch(url, options);
+        };
+
+        // ✅ FIXED LINE
+        button.manifest = `https://droidlink.github.io/DroidLink_Installer/manifest/${selectedFirmware.toLowerCase()}.json`;
+      });
     </script>
   </body>
 </html>
