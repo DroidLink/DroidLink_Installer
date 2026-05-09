@@ -13,28 +13,37 @@
     <div class="installer">
       <h1>DroidLink Installer</h1>
 
-      <img src="images/R2.png" alt="DroidLink Logo" class="logo" />
+      <img
+        id="device-logo"
+        src="images/R2.png"
+        alt="DroidLink Logo"
+        class="logo"
+      />
 
       <div class="card">
         <p>Select Firmware</p>
 
         <div class="firmware-select">
           <button onclick="selectFirmware('MASTER')" id="btn-master">
-            Master Controller
+            Master Controller V1.4
           </button>
 
           <button onclick="selectFirmware('SLAVE')" id="btn-slave">
-            Universal Slave
+            Universal Slave (Stable) V1.2
+          </button>
+
+          <button onclick="selectFirmware('SLAVELATEST')" id="btn-slavelatest">
+            Universal Slave (Latest) V1.3
           </button>
 
           <button onclick="selectFirmware('DISPLAY')" id="btn-display">
-            Display UI
+            Round Display (old)
           </button>
           <button
             onclick="selectFirmware('DISPLAY_AMOLED')"
             id="btn-display_amoled"
           >
-            Display AMOLED
+            Display AMOLED (watch) V1.3
           </button>
         </div>
 
@@ -53,7 +62,21 @@
       </div>
 
       <div class="footer-link">
-        <a href="https://linktr.ee/droidlink" target="_blank">
+        <a
+          href="https://www.youtube.com/watch?v=jiLfbigjiPc&t=7s"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Click Here for Installation Video.
+        </a>
+      </div>
+
+      <div class="footer-link">
+        <a
+          href="https://linktr.ee/droidlink"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Click Here for Part list
         </a>
       </div>
@@ -66,13 +89,37 @@
       function selectFirmware(type) {
         selectedFirmware = type;
 
-        ["master", "slave", "display", "display_amoled"].forEach((id) => {
+        ["master", "slave","slavelatest", "display", "display_amoled"].forEach((id) => {
           document.getElementById("btn-" + id).classList.remove("active");
         });
 
         document
           .getElementById("btn-" + type.toLowerCase())
           .classList.add("active");
+
+        const logo = document.getElementById("device-logo");
+
+        switch (type) {
+          case "MASTER":
+            logo.src = "images/master.jpeg";
+            break;
+
+          case "SLAVE":
+            logo.src = "images/slave.jpeg";
+            break;
+
+          case "SLAVELATEST":
+            logo.src = "images/slave.jpeg";
+            break;
+
+          case "DISPLAY":
+            logo.src = "images/display.jpeg";
+            break;
+
+          case "DISPLAY_AMOLED":
+            logo.src = "images/display_amoled.jpeg";
+            break;
+        }
       }
 
       button.addEventListener("click", () => {
