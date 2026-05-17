@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <meta charset="utf-8" />
@@ -45,6 +45,10 @@
           >
             Display AMOLED (watch) V1.3
           </button>
+
+          <button onclick="selectFirmware('SLAVEASTRO')" id="btn-slaveastro">
+            AstroPixel Slave (New) 
+          </button>
         </div>
 
         <br />
@@ -89,9 +93,11 @@
       function selectFirmware(type) {
         selectedFirmware = type;
 
-        ["master", "slave","slavelatest", "display", "display_amoled"].forEach((id) => {
-          document.getElementById("btn-" + id).classList.remove("active");
-        });
+        ["master", "slave", "slavelatest", "display", "display_amoled", "slaveastro"].forEach(
+          (id) => {
+            document.getElementById("btn-" + id).classList.remove("active");
+          },
+        );
 
         document
           .getElementById("btn-" + type.toLowerCase())
@@ -118,6 +124,10 @@
 
           case "DISPLAY_AMOLED":
             logo.src = "images/display_amoled.jpeg";
+            break;
+
+          case "SLAVEASTRO":
+            logo.src = "images/slave.jpeg";
             break;
         }
       }
