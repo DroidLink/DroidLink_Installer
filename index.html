@@ -28,6 +28,13 @@
             Master Controller V1.4
           </button>
 
+          <button
+            onclick="selectFirmware('MASTER_UNSTABLE')"
+            id="btn-master_unstable"
+          >
+            Master Controller (Beta) V2.0
+          </button>
+
           <button onclick="selectFirmware('SLAVE')" id="btn-slave">
             Universal Slave (Stable) V1.2
           </button>
@@ -44,6 +51,13 @@
             id="btn-display_amoled"
           >
             Display AMOLED (watch) V1.3
+          </button>
+
+          <button
+            onclick="selectFirmware('DISPLAY_AMOLED_UNSTABLE')"
+            id="btn-display_amoled_unstable"
+          >
+            Display AMOLED (Beta) V2.0
           </button>
 
           <button onclick="selectFirmware('SLAVEASTRO')" id="btn-slaveastro">
@@ -91,30 +105,41 @@
       let selectedFirmware = null;
 
       function selectFirmware(type) {
-        selectedFirmware = type;
-
-        ["master", "slave", "slavelatest", "display", "display_amoled", "slaveastro"].forEach(
-          (id) => {
-            document.getElementById("btn-" + id).classList.remove("active");
-          },
-        );
-
-        document
-          .getElementById("btn-" + type.toLowerCase())
-          .classList.add("active");
-
         const logo = document.getElementById("device-logo");
+
+        // Beta firmware password check
+        if (type === "MASTER_UNSTABLE" || type === "DISPLAY_AMOLED_UNSTABLE") {
+          const pwd = prompt("Enter Beta Password");
+
+          if (pwd !== "r2beta") {
+            alert("Invalid password");
+            return;
+          }
+        }
+
+        // Clear active buttons
+        [
+          "master",
+          "master_unstable",
+          "slave",
+          "slavelatest",
+          "display",
+          "display_amoled",
+          "display_amoled_unstable",
+          "slaveastro",
+        ].forEach((id) => {
+          document.getElementById("btn-" + id).classList.remove("active");
+        });
 
         switch (type) {
           case "MASTER":
+          case "MASTER_UNSTABLE":
             logo.src = "images/master.jpeg";
             break;
 
           case "SLAVE":
-            logo.src = "images/slave.jpeg";
-            break;
-
           case "SLAVELATEST":
+          case "SLAVEASTRO":
             logo.src = "images/slave.jpeg";
             break;
 
@@ -123,13 +148,17 @@
             break;
 
           case "DISPLAY_AMOLED":
+          case "DISPLAY_AMOLED_UNSTABLE":
             logo.src = "images/display_amoled.jpeg";
             break;
-
-          case "SLAVEASTRO":
-            logo.src = "images/slave.jpeg";
-            break;
         }
+
+        // Only set if password passed
+        selectedFirmware = type;
+
+        document
+          .getElementById("btn-" + type.toLowerCase())
+          .classList.add("active");
       }
 
       button.addEventListener("click", () => {
