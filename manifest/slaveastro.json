@@ -1,20 +1,21 @@
 {
   "name": "DroidLink AstroPixel Slave",
-  "version": "V1.3",
+  "version": "V1.4",
+  "new_install_prompt_erase": true,
   "builds": [
     {
       "chipFamily": "ESP32",
       "parts": [
         {
-          "path": "https://droidlink-gatekeeper.fmoore1124.workers.dev/download/file?product=astropixels&version=V1.3&name=bootloader.bin",
+          "path": "https://droidlink-gatekeeper.fmoore1124.workers.dev/download/file?product=astropixels&version=V1.4&name=bootloader.bin",
           "offset": 4096
         },
         {
-          "path": "https://droidlink-gatekeeper.fmoore1124.workers.dev/download/file?product=astropixels&version=V1.3&name=partitions.bin",
+          "path": "https://droidlink-gatekeeper.fmoore1124.workers.dev/download/file?product=astropixels&version=V1.4&name=partitions.bin",
           "offset": 32768
         },
         {
-          "path": "https://droidlink-gatekeeper.fmoore1124.workers.dev/download/file?product=astropixels&version=V1.3&name=firmware.bin",
+          "path": "https://droidlink-gatekeeper.fmoore1124.workers.dev/download/file?product=astropixels&version=V1.4&name=firmware.bin",
           "offset": 65536
         }
       ]
