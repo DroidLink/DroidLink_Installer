@@ -63,6 +63,10 @@
           <button onclick="selectFirmware('SLAVEASTRO')" id="btn-slaveastro">
             AstroPixel Slave (New) V1.4
           </button>
+
+          <button onclick="selectFirmware('MAGICPANEL')" id="btn-magicpanel">
+            MagicPanel V1.0
+          </button>
         </div>
 
         <br />
@@ -127,6 +131,7 @@
           "display_amoled",
           "display_amoled_unstable",
           "slaveastro",
+          "magicpanel",
         ].forEach((id) => {
           document.getElementById("btn-" + id).classList.remove("active");
         });
@@ -145,6 +150,10 @@
 
           case "DISPLAY":
             logo.src = "images/display.jpeg";
+            break;
+
+          case "MAGICPANEL":
+            logo.src = "images/slave.jpeg";
             break;
 
           case "DISPLAY_AMOLED":
