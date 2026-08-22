@@ -14,6 +14,9 @@ It provides a simple, guided installation experience and does not contain firmwa
   - Master Controller
   - Universal Slave
   - Display Module
+  - AstroPixels
+  - MagicPanel
+  - Periscope
 - Requires no local IDE, toolchain, or drivers
 
 ---

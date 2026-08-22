@@ -67,6 +67,10 @@
           <button onclick="selectFirmware('MAGICPANEL')" id="btn-magicpanel">
             MagicPanel V1.0
           </button>
+
+          <button onclick="selectFirmware('PERISCOPE')" id="btn-periscope">
+            Periscope V1.0
+          </button>
         </div>
 
         <br />
@@ -110,6 +114,7 @@
 
       function selectFirmware(type) {
         const logo = document.getElementById("device-logo");
+        logo.style.display = "";
 
         // Beta firmware password check
         if (type === "MASTER_UNSTABLE" || type === "DISPLAY_AMOLED_UNSTABLE") {
@@ -132,6 +137,7 @@
           "display_amoled_unstable",
           "slaveastro",
           "magicpanel",
+          "periscope",
         ].forEach((id) => {
           document.getElementById("btn-" + id).classList.remove("active");
         });
@@ -154,6 +160,10 @@
 
           case "MAGICPANEL":
             logo.src = "images/slave.jpeg";
+            break;
+
+          case "PERISCOPE":
+            logo.style.display = "none";
             break;
 
           case "DISPLAY_AMOLED":
