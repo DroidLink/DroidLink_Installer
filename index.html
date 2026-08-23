@@ -25,14 +25,14 @@
 
         <div class="firmware-select">
           <button onclick="selectFirmware('MASTER')" id="btn-master">
-            Master Controller V1.6
+            Master Controller V1.6 (Stable)
           </button>
 
           <button
-            onclick="selectFirmware('MASTER_UNSTABLE')"
-            id="btn-master_unstable"
+            onclick="selectFirmware('MASTER_V2')"
+            id="btn-master_v2"
           >
-            Master Controller (Beta) V2.0
+            Master Controller V2.0.0 (New)
           </button>
 
           <button onclick="selectFirmware('SLAVE')" id="btn-slave">
@@ -50,14 +50,14 @@
             onclick="selectFirmware('DISPLAY_AMOLED')"
             id="btn-display_amoled"
           >
-            Display AMOLED (watch) V1.3
+            Display AMOLED V1.3 (Stable)
           </button>
 
           <button
-            onclick="selectFirmware('DISPLAY_AMOLED_UNSTABLE')"
-            id="btn-display_amoled_unstable"
+            onclick="selectFirmware('DISPLAY_AMOLED_V2')"
+            id="btn-display_amoled_v2"
           >
-            Display AMOLED (Beta) V2.0
+            Display AMOLED V2.0.0 (New)
           </button>
 
           <button onclick="selectFirmware('SLAVEASTRO')" id="btn-slaveastro">
@@ -116,25 +116,15 @@
         const logo = document.getElementById("device-logo");
         logo.style.display = "";
 
-        // Beta firmware password check
-        if (type === "MASTER_UNSTABLE" || type === "DISPLAY_AMOLED_UNSTABLE") {
-          const pwd = prompt("Enter Beta Password");
-
-          if (pwd !== "Brutus88") {
-            alert("Invalid password");
-            return;
-          }
-        }
-
         // Clear active buttons
         [
           "master",
-          "master_unstable",
+          "master_v2",
           "slave",
           "slavelatest",
           "display",
           "display_amoled",
-          "display_amoled_unstable",
+          "display_amoled_v2",
           "slaveastro",
           "magicpanel",
           "periscope",
@@ -144,7 +134,7 @@
 
         switch (type) {
           case "MASTER":
-          case "MASTER_UNSTABLE":
+          case "MASTER_V2":
             logo.src = "images/master.jpeg";
             break;
 
@@ -167,12 +157,11 @@
             break;
 
           case "DISPLAY_AMOLED":
-          case "DISPLAY_AMOLED_UNSTABLE":
+          case "DISPLAY_AMOLED_V2":
             logo.src = "images/display_amoled.jpeg";
             break;
         }
 
-        // Only set if password passed
         selectedFirmware = type;
 
         document
