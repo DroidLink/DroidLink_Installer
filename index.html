@@ -35,6 +35,13 @@
             Master Controller V2.0.0 (New)
           </button>
 
+          <button
+            onclick="selectFirmware('MASTER_V201_TESTING')"
+            id="btn-master_v201_testing"
+          >
+            Master Controller V2.0.1 (Testing)
+          </button>
+
           <button onclick="selectFirmware('SLAVE')" id="btn-slave">
             Universal Slave (Stable) V1.2
           </button>
@@ -147,6 +154,7 @@
         [
           "master",
           "master_v2",
+          "master_v201_testing",
           "slave",
           "slavelatest",
           "display",
@@ -162,6 +170,7 @@
         switch (type) {
           case "MASTER":
           case "MASTER_V2":
+          case "MASTER_V201_TESTING":
             logo.src = "images/master.jpeg";
             break;
 
