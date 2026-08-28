@@ -143,7 +143,17 @@
         headers.set("x-license-key", activeLicense);
         headers.set("x-install-session-id", installSessionId);
 
-        return originalFetch(resource, { ...options, headers });
+        return originalFetch(resource, { ...options, headers }).then(
+          (response) => {
+            if (response.status === 403) {
+              throw new Error(
+                "Update Access Required. Your DroidLink license does not currently have access to this firmware. Please contact DroidLink Support if you believe this is incorrect.",
+              );
+            }
+
+            return response;
+          },
+        );
       };
 
       function selectFirmware(type) {
