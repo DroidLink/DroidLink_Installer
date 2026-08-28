@@ -111,6 +111,33 @@
     <script>
       const button = document.getElementById("install");
       let selectedFirmware = null;
+      let activeLicense = "";
+      let installSessionId = "";
+      const gatekeeperHost = "droidlink-gatekeeper.fmoore1124.workers.dev";
+      const originalFetch = window.fetch.bind(window);
+
+      // Only send private authorization data to DroidLink Gatekeeper.
+      window.fetch = (resource, options = {}) => {
+        const requestUrl = new URL(
+          resource instanceof Request ? resource.url : resource,
+          window.location.href,
+        );
+
+        if (requestUrl.hostname !== gatekeeperHost || !activeLicense) {
+          return originalFetch(resource, options);
+        }
+
+        const headers = new Headers(
+          resource instanceof Request ? resource.headers : undefined,
+        );
+        new Headers(options.headers || {}).forEach((value, name) => {
+          headers.set(name, value);
+        });
+        headers.set("x-license-key", activeLicense);
+        headers.set("x-install-session-id", installSessionId);
+
+        return originalFetch(resource, { ...options, headers });
+      };
 
       function selectFirmware(type) {
         const logo = document.getElementById("device-logo");
@@ -182,15 +209,10 @@
           return;
         }
 
-        // Inject license header
-        const originalFetch = window.fetch;
-        window.fetch = (url, options = {}) => {
-          options.headers = {
-            ...(options.headers || {}),
-            "x-license-key": license,
-          };
-          return originalFetch(url, options);
-        };
+        // One ID represents one click of Install Firmware. All binary files
+        // requested by this installation use the same ID.
+        activeLicense = license;
+        installSessionId = crypto.randomUUID();
 
         // ✅ FIXED LINE
         button.manifest = `https://droidlink.github.io/DroidLink_Installer/manifest/${selectedFirmware.toLowerCase()}.json`;
