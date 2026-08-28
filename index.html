@@ -36,10 +36,10 @@
           </button>
 
           <button
-            onclick="selectFirmware('MASTER_V201_TESTING')"
-            id="btn-master_v201_testing"
+            onclick="selectFirmware('MASTER_V201')"
+            id="btn-master_v201"
           >
-            Master Controller V2.0.1 (Testing)
+            Master Controller V2.0.1 (New)
           </button>
 
           <button onclick="selectFirmware('SLAVE')" id="btn-slave">
@@ -164,7 +164,7 @@
         [
           "master",
           "master_v2",
-          "master_v201_testing",
+          "master_v201",
           "slave",
           "slavelatest",
           "display",
@@ -180,7 +180,7 @@
         switch (type) {
           case "MASTER":
           case "MASTER_V2":
-          case "MASTER_V201_TESTING":
+          case "MASTER_V201":
             logo.src = "images/master.jpeg";
             break;
 
