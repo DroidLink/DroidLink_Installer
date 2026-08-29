@@ -46,6 +46,10 @@
             AstroPixels V1.4
           </button>
 
+          <button onclick="selectFirmware('ASTROPIXELS_PCA')" id="btn-astropixels_pca">
+            AstroPixels PCA V1.0 (Testing)
+          </button>
+
           <button onclick="selectFirmware('MAGICPANEL')" id="btn-magicpanel">
             MagicPanel V1.0
           </button>
@@ -179,6 +183,7 @@
           "display_amoled",
           "display_amoled_v2",
           "slaveastro",
+          "astropixels_pca",
           "magicpanel",
           "periscope",
         ].forEach((id) => {
@@ -204,6 +209,7 @@
 
           case "MAGICPANEL":
           case "PERISCOPE":
+          case "ASTROPIXELS_PCA":
             logo.style.display = "none";
             break;
 
