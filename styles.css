@@ -3,6 +3,7 @@
    body {
         margin: 0;
         min-height: 100vh;
+        padding: 32px 20px;
         background: radial-gradient(circle at top, #111 0%, #000 60%);
         color: #e0e0e0;
         font-family: monospace;
@@ -16,6 +17,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        width: 100%;
       }
 
       h1 {
@@ -27,7 +29,7 @@
 
       /* Logo under header */
       .logo {
-        width: 120px;
+        width: 140px;
         max-width: 60%;
         height: auto;
         margin-bottom: 24px;
@@ -35,11 +37,15 @@
         filter: drop-shadow(0 0 10px rgba(77, 163, 255, 0.4));
       }
 
+      .logo-round {
+        border-radius: 50%;
+      }
+
       .card {
         border: 1px solid #2a2a2a;
-        padding: 24px;
+        padding: 32px;
         border-radius: 14px;
-        width: 360px;
+        width: min(700px, 92vw);
         background: linear-gradient(180deg, #141414, #0e0e0e);
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6),
           inset 0 1px 0 rgba(255, 255, 255, 0.03);
@@ -56,9 +62,15 @@
         letter-spacing: 0.04em;
       }
 
+      .firmware-select {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
       .firmware-select button {
         width: 100%;
-        margin-bottom: 10px;
+        margin-bottom: 0;
         padding: 12px;
         background: #181818;
         color: #ddd;
@@ -78,8 +90,13 @@
         color: #4da3ff;
       }
 
+      .firmware-select button.active::before {
+        content: "✓ ";
+        font-weight: bold;
+      }
+
       .previous-firmware {
-        margin-top: 8px;
+        margin-top: 0;
         border: 1px solid #2c2c2c;
         border-radius: 8px;
         background: #111;
@@ -103,6 +120,35 @@
 
       .previous-firmware-list {
         padding: 0 10px;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        padding-bottom: 10px;
+      }
+
+      .installer-options-row {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        align-items: start;
+        margin-top: 18px;
+      }
+
+      .installer-options-row > * {
+        min-width: 0;
+      }
+
+      .installer-options-row .previous-firmware-list {
+        grid-template-columns: 1fr;
+      }
+
+      .license-entry {
+        margin: 0;
+      }
+
+      .option-label {
+        display: block;
+        margin-bottom: 6px;
       }
 
       input {
@@ -114,8 +160,23 @@
         border-radius: 4px;
       }
 
-      .install-btn button {
+      #license {
+        display: block;
+        box-sizing: border-box;
         width: 100%;
+        margin-top: 6px;
+        padding: 12px;
+      }
+
+      .install-btn {
+        display: block;
+        margin-top: 22px;
+      }
+
+      .install-btn button {
+        display: block;
+        width: 50%;
+        margin: 0 auto;
         padding: 12px;
         background: #4da3ff;
         color: #000;
@@ -142,10 +203,25 @@
 
       @media (max-width: 480px) {
         .card {
-          width: 90%;
+          width: 94vw;
+          padding: 20px;
         }
 
         .logo {
-          width: 96px;
+          width: 112px;
+        }
+
+        #license {
+          width: 100%;
+        }
+
+        .firmware-select,
+        .previous-firmware-list,
+        .installer-options-row {
+          grid-template-columns: 1fr;
+        }
+
+        .install-btn button {
+          width: 100%;
         }
       }

@@ -17,7 +17,7 @@
         id="device-logo"
         src="images/R2.png"
         alt="DroidLink Logo"
-        class="logo"
+        class="logo logo-round"
       />
 
       <div class="card">
@@ -28,7 +28,7 @@
             onclick="selectFirmware('MASTER_V201')"
             id="btn-master_v201"
           >
-            Master Controller V2.0.1 (New)
+            Master Controller V2.0.1 (Current)
           </button>
 
           <button onclick="selectFirmware('SLAVELATEST')" id="btn-slavelatest">
@@ -39,7 +39,7 @@
             onclick="selectFirmware('DISPLAY_AMOLED_V2')"
             id="btn-display_amoled_v2"
           >
-            Watch Display V2.0.0 (New)
+            Watch Display V2.0.0 (Current)
           </button>
 
           <button onclick="selectFirmware('SLAVEASTRO')" id="btn-slaveastro">
@@ -53,10 +53,19 @@
           <button onclick="selectFirmware('PERISCOPE')" id="btn-periscope">
             Periscope V1.0
           </button>
+        </div>
 
-          <details class="previous-firmware">
-            <summary>Previous and Legacy Firmware</summary>
-            <div class="previous-firmware-list">
+        <div class="installer-options-row">
+          <label class="license-entry">
+            License Key:
+            <input id="license" />
+          </label>
+
+          <div class="legacy-entry">
+            <span class="option-label">Previous Firmware:</span>
+            <details class="previous-firmware">
+              <summary>Previous and Legacy Firmware</summary>
+              <div class="previous-firmware-list">
               <button
                 onclick="selectFirmware('MASTER_V2')"
                 id="btn-master_v2"
@@ -82,18 +91,10 @@
               <button onclick="selectFirmware('DISPLAY')" id="btn-display">
                 Original Round Display V1.0
               </button>
-            </div>
-          </details>
+              </div>
+            </details>
+          </div>
         </div>
-
-        <br />
-
-        <label>
-          License Key:
-          <input id="license" />
-        </label>
-
-        <br /><br />
 
         <esp-web-install-button id="install" class="install-btn">
           <button slot="activate">Install Firmware</button>
@@ -165,6 +166,7 @@
       function selectFirmware(type) {
         const logo = document.getElementById("device-logo");
         logo.style.display = "";
+        logo.classList.remove("logo-round");
 
         // Clear active buttons
         [
@@ -201,9 +203,6 @@
             break;
 
           case "MAGICPANEL":
-            logo.src = "images/slave.jpeg";
-            break;
-
           case "PERISCOPE":
             logo.style.display = "none";
             break;
