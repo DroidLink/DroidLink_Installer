@@ -68,7 +68,8 @@
         gap: 10px;
       }
 
-      .firmware-select button {
+      .firmware-select button,
+      .previous-firmware-list button {
         width: 100%;
         margin-bottom: 0;
         padding: 12px;
@@ -80,17 +81,20 @@
         transition: all 0.15s ease;
       }
 
-      .firmware-select button:hover {
+      .firmware-select button:hover,
+      .previous-firmware-list button:hover {
         border-color: #4da3ff;
       }
 
-      .firmware-select button.active {
+      .firmware-select button.active,
+      .previous-firmware-list button.active {
         background: #111c2a;
         border-color: #4da3ff;
         color: #4da3ff;
       }
 
-      .firmware-select button.active::before {
+      .firmware-select button.active::before,
+      .previous-firmware-list button.active::before {
         content: "✓ ";
         font-weight: bold;
       }
