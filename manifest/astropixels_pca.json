@@ -1,0 +1,28 @@
+{
+  "name": "DroidLink AstroPixels PCA",
+  "version": "V1.0 Testing",
+  "new_install_prompt_erase": true,
+  "builds": [
+    {
+      "chipFamily": "ESP32",
+      "parts": [
+        {
+          "path": "https://droidlink-gatekeeper.fmoore1124.workers.dev/download/file?product=astropixels_pca&version=V1.0&name=bootloader.bin",
+          "offset": 4096
+        },
+        {
+          "path": "https://droidlink-gatekeeper.fmoore1124.workers.dev/download/file?product=astropixels_pca&version=V1.0&name=partitions.bin",
+          "offset": 32768
+        },
+        {
+          "path": "https://droidlink-gatekeeper.fmoore1124.workers.dev/download/file?product=astropixels_pca&version=V1.0&name=boot_app0.bin",
+          "offset": 57344
+        },
+        {
+          "path": "https://droidlink-gatekeeper.fmoore1124.workers.dev/download/file?product=astropixels_pca&version=V1.0&name=firmware.bin",
+          "offset": 65536
+        }
+      ]
+    }
+  ]
+}
