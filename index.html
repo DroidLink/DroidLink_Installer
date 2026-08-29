@@ -21,20 +21,9 @@
       />
 
       <div class="card">
-        <p>Select Firmware</p>
+        <p class="firmware-heading">Current Firmware</p>
 
         <div class="firmware-select">
-          <button onclick="selectFirmware('MASTER')" id="btn-master">
-            Master Controller V1.6 (Stable)
-          </button>
-
-          <button
-            onclick="selectFirmware('MASTER_V2')"
-            id="btn-master_v2"
-          >
-            Master Controller V2.0.0 (New)
-          </button>
-
           <button
             onclick="selectFirmware('MASTER_V201')"
             id="btn-master_v201"
@@ -42,33 +31,19 @@
             Master Controller V2.0.1 (New)
           </button>
 
-          <button onclick="selectFirmware('SLAVE')" id="btn-slave">
-            Universal Slave (Stable) V1.2
-          </button>
-
           <button onclick="selectFirmware('SLAVELATEST')" id="btn-slavelatest">
-            Universal Slave (Latest) V1.5
-          </button>
-
-          <button onclick="selectFirmware('DISPLAY')" id="btn-display">
-            Round Display (old)
-          </button>
-          <button
-            onclick="selectFirmware('DISPLAY_AMOLED')"
-            id="btn-display_amoled"
-          >
-            Display AMOLED V1.3 (Stable)
+            Universal Slave V1.5
           </button>
 
           <button
             onclick="selectFirmware('DISPLAY_AMOLED_V2')"
             id="btn-display_amoled_v2"
           >
-            Display AMOLED V2.0.0 (New)
+            Watch Display V2.0.0 (New)
           </button>
 
           <button onclick="selectFirmware('SLAVEASTRO')" id="btn-slaveastro">
-            AstroPixel Slave (New) V1.4
+            AstroPixels V1.4
           </button>
 
           <button onclick="selectFirmware('MAGICPANEL')" id="btn-magicpanel">
@@ -78,6 +53,37 @@
           <button onclick="selectFirmware('PERISCOPE')" id="btn-periscope">
             Periscope V1.0
           </button>
+
+          <details class="previous-firmware">
+            <summary>Previous and Legacy Firmware</summary>
+            <div class="previous-firmware-list">
+              <button
+                onclick="selectFirmware('MASTER_V2')"
+                id="btn-master_v2"
+              >
+                Master Controller V2.0.0
+              </button>
+
+              <button onclick="selectFirmware('MASTER')" id="btn-master">
+                Master Controller V1.6
+              </button>
+
+              <button onclick="selectFirmware('SLAVE')" id="btn-slave">
+                Universal Slave V1.2
+              </button>
+
+              <button
+                onclick="selectFirmware('DISPLAY_AMOLED')"
+                id="btn-display_amoled"
+              >
+                Watch Display V1.3
+              </button>
+
+              <button onclick="selectFirmware('DISPLAY')" id="btn-display">
+                Original Round Display V1.0
+              </button>
+            </div>
+          </details>
         </div>
 
         <br />

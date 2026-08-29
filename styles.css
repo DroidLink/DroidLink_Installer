@@ -51,6 +51,11 @@
         color: #aaa;
       }
 
+      .firmware-heading {
+        font-weight: bold;
+        letter-spacing: 0.04em;
+      }
+
       .firmware-select button {
         width: 100%;
         margin-bottom: 10px;
@@ -71,6 +76,33 @@
         background: #111c2a;
         border-color: #4da3ff;
         color: #4da3ff;
+      }
+
+      .previous-firmware {
+        margin-top: 8px;
+        border: 1px solid #2c2c2c;
+        border-radius: 8px;
+        background: #111;
+      }
+
+      .previous-firmware summary {
+        padding: 12px;
+        color: #aaa;
+        cursor: pointer;
+        user-select: none;
+      }
+
+      .previous-firmware summary:hover {
+        color: #4da3ff;
+      }
+
+      .previous-firmware[open] summary {
+        border-bottom: 1px solid #2c2c2c;
+        margin-bottom: 10px;
+      }
+
+      .previous-firmware-list {
+        padding: 0 10px;
       }
 
       input {
