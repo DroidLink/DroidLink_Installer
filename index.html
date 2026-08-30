@@ -50,6 +50,10 @@
             AstroPixels PCA V1.1 (Testing)
           </button>
 
+          <button onclick="selectFirmware('DROIDLINK_BODYPCA')" id="btn-droidlink_bodypca">
+            DroidLink_BodyPCA V1.0.0 (Testing)
+          </button>
+
           <button onclick="selectFirmware('MAGICPANEL')" id="btn-magicpanel">
             MagicPanel V1.0
           </button>
@@ -184,6 +188,7 @@
           "display_amoled_v2",
           "slaveastro",
           "astropixels_pca",
+          "droidlink_bodypca",
           "magicpanel",
           "periscope",
         ].forEach((id) => {
@@ -210,6 +215,7 @@
           case "MAGICPANEL":
           case "PERISCOPE":
           case "ASTROPIXELS_PCA":
+          case "DROIDLINK_BODYPCA":
             logo.style.display = "none";
             break;
 
