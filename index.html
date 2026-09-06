@@ -31,10 +31,6 @@
             Master Controller V2.0.1 (Current)
           </button>
 
-          <button onclick="selectFirmware('SLAVELATEST')" id="btn-slavelatest">
-            Universal Slave V1.5
-          </button>
-
           <button
             onclick="selectFirmware('DISPLAY_AMOLED_V2')"
             id="btn-display_amoled_v2"
@@ -61,6 +57,15 @@
           <button onclick="selectFirmware('PERISCOPE')" id="btn-periscope">
             Periscope V1.0
           </button>
+
+          <!-- Staged for release. Keep hidden until Gatekeeper access is enabled. -->
+          <button hidden onclick="selectFirmware('DROIDLINK_MAESTRO_C3')" id="btn-droidlink_maestro_c3">
+            DroidLink Maestro — ESP32-C3 Super Mini V2.0.0
+          </button>
+
+          <button hidden onclick="selectFirmware('DROIDLINK_MAESTRO_ESP32')" id="btn-droidlink_maestro_esp32">
+            DroidLink Maestro — ESP32 DevKit V2.0.0
+          </button>
         </div>
 
         <div class="installer-options-row">
@@ -85,8 +90,8 @@
                 Master Controller V1.6
               </button>
 
-              <button onclick="selectFirmware('SLAVE')" id="btn-slave">
-                Universal Slave V1.2
+              <button onclick="selectFirmware('SLAVELATEST')" id="btn-slavelatest">
+                Universal Slave V1.5 (Legacy)
               </button>
 
               <button
@@ -181,7 +186,6 @@
           "master",
           "master_v2",
           "master_v201",
-          "slave",
           "slavelatest",
           "display",
           "display_amoled",
@@ -191,6 +195,8 @@
           "droidlink_bodypca",
           "magicpanel",
           "periscope",
+          "droidlink_maestro_c3",
+          "droidlink_maestro_esp32",
         ].forEach((id) => {
           document.getElementById("btn-" + id).classList.remove("active");
         });
@@ -202,7 +208,6 @@
             logo.src = "images/master.jpeg";
             break;
 
-          case "SLAVE":
           case "SLAVELATEST":
           case "SLAVEASTRO":
             logo.src = "images/slave.jpeg";
@@ -216,6 +221,8 @@
           case "PERISCOPE":
           case "ASTROPIXELS_PCA":
           case "DROIDLINK_BODYPCA":
+          case "DROIDLINK_MAESTRO_C3":
+          case "DROIDLINK_MAESTRO_ESP32":
             logo.style.display = "none";
             break;
 
@@ -251,7 +258,7 @@
         installSessionId = crypto.randomUUID();
 
         // ✅ FIXED LINE
-        button.manifest = `https://droidlink.github.io/DroidLink_Installer/manifest/${selectedFirmware.toLowerCase()}.json?v=20260829b`;
+        button.manifest = `https://droidlink.github.io/DroidLink_Installer/manifest/${selectedFirmware.toLowerCase()}.json?v=20260905a`;
       });
     </script>
   </body>
