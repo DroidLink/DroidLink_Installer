@@ -58,13 +58,16 @@
             Periscope V1.0
           </button>
 
-          <!-- Staged for release. Keep hidden until public availability is approved. -->
-          <button hidden onclick="selectFirmware('DROIDLINK_MAESTRO_C3')" id="btn-droidlink_maestro_c3">
-            DroidLink Maestro — ESP32-C3 Super Mini V2.0.0
+          <button onclick="selectFirmware('DROIDLINK_MAESTRO_C3')" id="btn-droidlink_maestro_c3">
+            DroidLink Maestro - ESP32-C3 Super Mini V2.0.0 (Paid)
           </button>
 
-          <button hidden onclick="selectFirmware('DROIDLINK_MAESTRO_ESP32')" id="btn-droidlink_maestro_esp32">
-            DroidLink Maestro — ESP32 DevKit V2.0.0
+          <button onclick="selectFirmware('DROIDLINK_MAESTRO_ESP32')" id="btn-droidlink_maestro_esp32">
+            DroidLink Maestro - ESP32 DevKit V2.0.0 (Paid)
+          </button>
+
+          <button onclick="selectFirmware('DROIDLINK_AP_MA')" id="btn-droidlink_ap_ma">
+            DroidLink_AP_MA V1.0.0 (Paid)
           </button>
         </div>
 
@@ -197,6 +200,7 @@
           "periscope",
           "droidlink_maestro_c3",
           "droidlink_maestro_esp32",
+          "droidlink_ap_ma",
         ].forEach((id) => {
           document.getElementById("btn-" + id).classList.remove("active");
         });
@@ -223,6 +227,7 @@
           case "DROIDLINK_BODYPCA":
           case "DROIDLINK_MAESTRO_C3":
           case "DROIDLINK_MAESTRO_ESP32":
+          case "DROIDLINK_AP_MA":
             logo.style.display = "none";
             break;
 
@@ -258,7 +263,7 @@
         installSessionId = crypto.randomUUID();
 
         // ✅ FIXED LINE
-        button.manifest = `https://droidlink.github.io/DroidLink_Installer/manifest/${selectedFirmware.toLowerCase()}.json?v=20260905a`;
+        button.manifest = `https://droidlink.github.io/DroidLink_Installer/manifest/${selectedFirmware.toLowerCase()}.json?v=20260908a`;
       });
     </script>
   </body>

@@ -13,8 +13,12 @@ It provides a simple, guided installation experience and does not contain firmwa
 - Supports installation for:
   - Master Controller
   - Universal Slave
-  - Display Module
+  - Watch Display
   - AstroPixels
+  - AstroPixels PCA
+  - DroidLink Maestro (ESP32-C3 Super Mini and ESP32 DevKit)
+  - DroidLink AstroPixels Maestro
+  - DroidLink BodyPCA
   - MagicPanel
   - Periscope
 - Requires no local IDE, toolchain, or drivers
@@ -28,7 +32,9 @@ It provides a simple, guided installation experience and does not contain firmwa
 - License key validation logic
 - OTA update logic
 
-Firmware binaries are distributed separately to licensed users.
+Firmware files are delivered through the private DroidLink Gatekeeper to
+licensed users. Release access depends on the policy assigned to each firmware
+version.
 
 ---
 
