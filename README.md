@@ -17,7 +17,7 @@ It provides a simple, guided installation experience and does not contain firmwa
   - AstroPixels
   - AstroPixels PCA
   - DroidLink Maestro (ESP32-C3 Super Mini and ESP32 DevKit)
-  - DroidLink AstroPixels Maestro
+  - DroidLink_AP
   - DroidLink BodyPCA
   - MagicPanel
   - Periscope
