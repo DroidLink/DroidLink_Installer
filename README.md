@@ -14,8 +14,6 @@ It provides a simple, guided installation experience and does not contain firmwa
   - Master Controller
   - Universal Slave
   - Watch Display
-  - AstroPixels
-  - AstroPixels PCA
   - DroidLink Maestro (ESP32-C3 Super Mini and ESP32 DevKit)
   - DroidLink_AP
   - DroidLink BodyPCA

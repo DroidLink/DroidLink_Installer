@@ -38,14 +38,6 @@
             Watch Display V2.0.0 (Current)
           </button>
 
-          <button onclick="selectFirmware('SLAVEASTRO')" id="btn-slaveastro">
-            AstroPixels V1.4
-          </button>
-
-          <button onclick="selectFirmware('ASTROPIXELS_PCA')" id="btn-astropixels_pca">
-            AstroPixels PCA V1.1 (Testing)
-          </button>
-
           <button onclick="selectFirmware('DROIDLINK_BODYPCA')" id="btn-droidlink_bodypca">
             DroidLink_BodyPCA V1.0.0 (Testing)
           </button>
@@ -193,8 +185,6 @@
           "display",
           "display_amoled",
           "display_amoled_v2",
-          "slaveastro",
-          "astropixels_pca",
           "droidlink_bodypca",
           "magicpanel",
           "periscope",
@@ -213,7 +203,6 @@
             break;
 
           case "SLAVELATEST":
-          case "SLAVEASTRO":
             logo.src = "images/slave.jpeg";
             break;
 
@@ -223,7 +212,6 @@
 
           case "MAGICPANEL":
           case "PERISCOPE":
-          case "ASTROPIXELS_PCA":
           case "DROIDLINK_BODYPCA":
           case "DROIDLINK_MAESTRO_C3":
           case "DROIDLINK_MAESTRO_ESP32":
