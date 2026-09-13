@@ -14,9 +14,8 @@ It provides a simple, guided installation experience and does not contain firmwa
   - Master Controller
   - Universal Slave
   - Watch Display
-  - DroidLink Maestro (ESP32-C3 Super Mini and ESP32 DevKit)
+  - DroidLink Slave (ESP32-C3 Super Mini and ESP32 DevKit)
   - DroidLink_AP
-  - DroidLink BodyPCA
   - MagicPanel
   - Periscope
 - Requires no local IDE, toolchain, or drivers
