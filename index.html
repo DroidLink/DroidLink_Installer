@@ -32,10 +32,10 @@
           </button>
 
           <button
-            onclick="selectFirmware('DISPLAY_AMOLED_V2')"
-            id="btn-display_amoled_v2"
+            onclick="selectFirmware('DISPLAY_AMOLED_V21')"
+            id="btn-display_amoled_v21"
           >
-            Watch Display V2.0.0 (Current)
+            Watch Display V2.1.0 (NEW)
           </button>
 
           <button onclick="selectFirmware('MAGICPANEL')" id="btn-magicpanel">
@@ -87,6 +87,13 @@
 
               <button onclick="selectFirmware('SLAVEASTRO')" id="btn-slaveastro">
                 AstroPixels V1.4 (Legacy)
+              </button>
+
+              <button
+                onclick="selectFirmware('DISPLAY_AMOLED_V2')"
+                id="btn-display_amoled_v2"
+              >
+                Watch Display V2.0.0
               </button>
 
               <button
@@ -186,6 +193,7 @@
           "display",
           "display_amoled",
           "display_amoled_v2",
+          "display_amoled_v21",
           "magicpanel",
           "periscope",
           "droidlink_maestro_c3",
@@ -221,6 +229,7 @@
 
           case "DISPLAY_AMOLED":
           case "DISPLAY_AMOLED_V2":
+          case "DISPLAY_AMOLED_V21":
             logo.src = "images/display_amoled.jpeg";
             break;
         }
@@ -251,7 +260,7 @@
         installSessionId = crypto.randomUUID();
 
         // ✅ FIXED LINE
-        button.manifest = `https://droidlink.github.io/DroidLink_Installer/manifest/${selectedFirmware.toLowerCase()}.json?v=20260913a`;
+        button.manifest = `https://droidlink.github.io/DroidLink_Installer/manifest/${selectedFirmware.toLowerCase()}.json?v=20260920a`;
       });
     </script>
   </body>
