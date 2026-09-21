@@ -1,6 +1,7 @@
 {
   "name": "DroidLink Universal Slave (Factory)",
   "version": "V1.5",
+  "new_install_prompt_erase": true,
   "builds": [
     {
       "chipFamily": "ESP32",

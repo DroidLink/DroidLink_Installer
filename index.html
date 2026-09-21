@@ -32,6 +32,13 @@
           </button>
 
           <button
+            onclick="selectFirmware('MASTER_V21_LOCKED')"
+            id="btn-master_v21_locked"
+          >
+            Master Controller V2.1.0 (Locked)
+          </button>
+
+          <button
             onclick="selectFirmware('DISPLAY_AMOLED_V21')"
             id="btn-display_amoled_v21"
           >
@@ -188,6 +195,7 @@
           "master",
           "master_v2",
           "master_v201",
+          "master_v21_locked",
           "slavelatest",
           "slaveastro",
           "display",
@@ -207,6 +215,7 @@
           case "MASTER":
           case "MASTER_V2":
           case "MASTER_V201":
+          case "MASTER_V21_LOCKED":
             logo.src = "images/master.jpeg";
             break;
 
@@ -260,7 +269,7 @@
         installSessionId = crypto.randomUUID();
 
         // ✅ FIXED LINE
-        button.manifest = `https://droidlink.github.io/DroidLink_Installer/manifest/${selectedFirmware.toLowerCase()}.json?v=20260920a`;
+        button.manifest = `https://droidlink.github.io/DroidLink_Installer/manifest/${selectedFirmware.toLowerCase()}.json?v=20260920b`;
       });
     </script>
   </body>
