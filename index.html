@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <title>DroidLink Installer</title>
-    <link rel="stylesheet" href="./styles.css?v=20260829b" />
+    <link rel="stylesheet" href="./styles.css?v=20260924a" />
     <script
       type="module"
       src="https://unpkg.com/esp-web-tools@latest/dist/web/install-button.js"
@@ -121,6 +121,17 @@
         <esp-web-install-button id="install" class="install-btn">
           <button slot="activate">Install Firmware</button>
         </esp-web-install-button>
+
+        <details id="setup-recovery" class="setup-recovery" hidden>
+          <summary>Reset First-Time Setup?</summary>
+          <ol>
+            <li>Connect the device by USB.</li>
+            <li>Open <strong>Logs &amp; Console</strong>.</li>
+            <li>Type <code>NEWMAC</code> and press Enter.</li>
+            <li>Follow the first-time setup instructions.</li>
+          </ol>
+          <p>Your saved device configuration and servo settings will not be erased.</p>
+        </details>
       </div>
 
       <div class="footer-link">
@@ -187,6 +198,7 @@
 
       function selectFirmware(type) {
         const logo = document.getElementById("device-logo");
+        const setupRecovery = document.getElementById("setup-recovery");
         logo.style.display = "";
         logo.classList.remove("logo-round");
 
@@ -244,6 +256,15 @@
         }
 
         selectedFirmware = type;
+
+        setupRecovery.hidden = ![
+          "DROIDLINK_MAESTRO_C3",
+          "DROIDLINK_MAESTRO_ESP32",
+          "DROIDLINK_AP_MA",
+        ].includes(type);
+        if (setupRecovery.hidden) {
+          setupRecovery.open = false;
+        }
 
         document
           .getElementById("btn-" + type.toLowerCase())

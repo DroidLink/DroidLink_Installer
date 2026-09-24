@@ -190,6 +190,47 @@
         font-weight: bold;
       }
 
+      .setup-recovery {
+        margin-top: 22px;
+        border: 1px solid #2c2c2c;
+        border-radius: 8px;
+        background: #111;
+      }
+
+      .setup-recovery[hidden] {
+        display: none;
+      }
+
+      .setup-recovery summary {
+        padding: 12px;
+        color: #ddd;
+        cursor: pointer;
+        font-weight: bold;
+      }
+
+      .setup-recovery summary:hover {
+        color: #4da3ff;
+      }
+
+      .setup-recovery[open] summary {
+        border-bottom: 1px solid #2c2c2c;
+      }
+
+      .setup-recovery ol {
+        margin: 14px 28px;
+        padding-left: 18px;
+        line-height: 1.7;
+      }
+
+      .setup-recovery p {
+        margin: 0 28px 16px;
+      }
+
+      .setup-recovery code {
+        color: #4da3ff;
+        font-weight: bold;
+      }
+
       .footer-link {
         margin-top: 16px;
         font-size: 0.85rem;
