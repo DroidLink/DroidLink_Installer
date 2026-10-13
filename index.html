@@ -53,6 +53,10 @@
             Periscope V1.0
           </button>
 
+          <button onclick="selectFirmware('RADAREYE')" id="btn-radareye">
+            RadarEye V1.0.0
+          </button>
+
           <button onclick="selectFirmware('DROIDLINK_MAESTRO_C3')" id="btn-droidlink_maestro_c3">
             DroidLink Slave - ESP32-C3 Super Mini V2.3.0 (Universal)
           </button>
@@ -132,6 +136,17 @@
           </ol>
           <p>Your saved device configuration and servo settings will not be erased.</p>
         </details>
+
+        <details id="radareye-setup" class="setup-recovery" hidden>
+          <summary>RadarEye First-Time Setup</summary>
+          <ol>
+            <li>For a first installation or pairing reset, choose the erase option during installation.</li>
+            <li>After installation, keep RadarEye connected by USB and open <strong>Logs &amp; Console</strong>.</li>
+            <li>Enter the DroidLink Master MAC address when prompted.</li>
+            <li>Enter an unused Node ID from 2 through 13.</li>
+          </ol>
+          <p>RadarEye saves the pairing information and restarts automatically.</p>
+        </details>
       </div>
 
       <div class="footer-link">
@@ -199,6 +214,7 @@
       function selectFirmware(type) {
         const logo = document.getElementById("device-logo");
         const setupRecovery = document.getElementById("setup-recovery");
+        const radarEyeSetup = document.getElementById("radareye-setup");
         logo.style.display = "";
         logo.classList.remove("logo-round");
 
@@ -216,6 +232,7 @@
           "display_amoled_v21",
           "magicpanel",
           "periscope",
+          "radareye",
           "droidlink_maestro_c3",
           "droidlink_maestro_esp32",
           "droidlink_ap_ma",
@@ -242,6 +259,7 @@
 
           case "MAGICPANEL":
           case "PERISCOPE":
+          case "RADAREYE":
           case "DROIDLINK_MAESTRO_C3":
           case "DROIDLINK_MAESTRO_ESP32":
           case "DROIDLINK_AP_MA":
@@ -264,6 +282,11 @@
         ].includes(type);
         if (setupRecovery.hidden) {
           setupRecovery.open = false;
+        }
+
+        radarEyeSetup.hidden = type !== "RADAREYE";
+        if (radarEyeSetup.hidden) {
+          radarEyeSetup.open = false;
         }
 
         document
@@ -290,7 +313,7 @@
         installSessionId = crypto.randomUUID();
 
         // ✅ FIXED LINE
-        button.manifest = `https://droidlink.github.io/DroidLink_Installer/manifest/${selectedFirmware.toLowerCase()}.json?v=20260920b`;
+        button.manifest = `https://droidlink.github.io/DroidLink_Installer/manifest/${selectedFirmware.toLowerCase()}.json?v=20261013a`;
       });
     </script>
   </body>
