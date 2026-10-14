@@ -39,10 +39,17 @@
           </button>
 
           <button
+            onclick="selectFirmware('DISPLAY_AMOLED_V22')"
+            id="btn-display_amoled_v22"
+          >
+            Watch Display V2.2.0 (Current)
+          </button>
+
+          <button
             onclick="selectFirmware('DISPLAY_AMOLED_V21')"
             id="btn-display_amoled_v21"
           >
-            Watch Display V2.1.0 (NEW)
+            Watch Display V2.1.0 (Fallback)
           </button>
 
           <button onclick="selectFirmware('MAGICPANEL')" id="btn-magicpanel">
@@ -140,6 +147,7 @@
         <details id="radareye-setup" class="setup-recovery" hidden>
           <summary>RadarEye First-Time Setup</summary>
           <ol>
+            <li>Put the Qualia board in upload mode: hold <strong>BOOT</strong>, press and release <strong>RESET</strong> while still holding BOOT, then release <strong>BOOT</strong>.</li>
             <li>For a first installation or pairing reset, choose the erase option during installation.</li>
             <li>When installation completes, click <strong>Next</strong>, then press the physical <strong>Reset</strong> button on the Qualia board.</li>
             <li>The console disconnecting after the physical reset is normal. Click <strong>Back</strong>.</li>
@@ -233,6 +241,7 @@
           "display_amoled",
           "display_amoled_v2",
           "display_amoled_v21",
+          "display_amoled_v22",
           "magicpanel",
           "periscope",
           "radareye",
@@ -272,6 +281,7 @@
           case "DISPLAY_AMOLED":
           case "DISPLAY_AMOLED_V2":
           case "DISPLAY_AMOLED_V21":
+          case "DISPLAY_AMOLED_V22":
             logo.src = "images/display_amoled.jpeg";
             break;
         }
@@ -316,7 +326,7 @@
         installSessionId = crypto.randomUUID();
 
         // ✅ FIXED LINE
-        button.manifest = `https://droidlink.github.io/DroidLink_Installer/manifest/${selectedFirmware.toLowerCase()}.json?v=20261013b`;
+        button.manifest = `https://droidlink.github.io/DroidLink_Installer/manifest/${selectedFirmware.toLowerCase()}.json?v=20261013c`;
       });
     </script>
   </body>
