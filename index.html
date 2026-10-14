@@ -65,15 +65,27 @@
           </button>
 
           <button onclick="selectFirmware('DROIDLINK_MAESTRO_C3')" id="btn-droidlink_maestro_c3">
-            DroidLink Slave - ESP32-C3 Super Mini V2.3.0 (Universal)
+            DroidLink Slave - ESP32-C3 Super Mini V2.4.0 (Current)
+          </button>
+
+          <button onclick="selectFirmware('DROIDLINK_MAESTRO_C3_V23')" id="btn-droidlink_maestro_c3_v23">
+            DroidLink Slave - ESP32-C3 Super Mini V2.3.0 (Fallback)
           </button>
 
           <button onclick="selectFirmware('DROIDLINK_MAESTRO_ESP32')" id="btn-droidlink_maestro_esp32">
-            DroidLink Slave - ESP32 DevKit V2.3.0 (Universal)
+            DroidLink Slave - ESP32 DevKit V2.4.0 (Current)
+          </button>
+
+          <button onclick="selectFirmware('DROIDLINK_MAESTRO_ESP32_V23')" id="btn-droidlink_maestro_esp32_v23">
+            DroidLink Slave - ESP32 DevKit V2.3.0 (Fallback)
           </button>
 
           <button onclick="selectFirmware('DROIDLINK_AP_MA')" id="btn-droidlink_ap_ma">
-            DroidLink_AP V2.3.0 (Current)
+            DroidLink_AP V2.4.0 (Current)
+          </button>
+
+          <button onclick="selectFirmware('DROIDLINK_AP_MA_V23')" id="btn-droidlink_ap_ma_v23">
+            DroidLink_AP V2.3.0 (Fallback)
           </button>
         </div>
 
@@ -246,8 +258,11 @@
           "periscope",
           "radareye",
           "droidlink_maestro_c3",
+          "droidlink_maestro_c3_v23",
           "droidlink_maestro_esp32",
+          "droidlink_maestro_esp32_v23",
           "droidlink_ap_ma",
+          "droidlink_ap_ma_v23",
         ].forEach((id) => {
           document.getElementById("btn-" + id).classList.remove("active");
         });
@@ -273,8 +288,11 @@
           case "PERISCOPE":
           case "RADAREYE":
           case "DROIDLINK_MAESTRO_C3":
+          case "DROIDLINK_MAESTRO_C3_V23":
           case "DROIDLINK_MAESTRO_ESP32":
+          case "DROIDLINK_MAESTRO_ESP32_V23":
           case "DROIDLINK_AP_MA":
+          case "DROIDLINK_AP_MA_V23":
             logo.style.display = "none";
             break;
 
@@ -290,8 +308,11 @@
 
         setupRecovery.hidden = ![
           "DROIDLINK_MAESTRO_C3",
+          "DROIDLINK_MAESTRO_C3_V23",
           "DROIDLINK_MAESTRO_ESP32",
+          "DROIDLINK_MAESTRO_ESP32_V23",
           "DROIDLINK_AP_MA",
+          "DROIDLINK_AP_MA_V23",
         ].includes(type);
         if (setupRecovery.hidden) {
           setupRecovery.open = false;
@@ -326,7 +347,7 @@
         installSessionId = crypto.randomUUID();
 
         // ✅ FIXED LINE
-        button.manifest = `https://droidlink.github.io/DroidLink_Installer/manifest/${selectedFirmware.toLowerCase()}.json?v=20261013c`;
+        button.manifest = `https://droidlink.github.io/DroidLink_Installer/manifest/${selectedFirmware.toLowerCase()}.json?v=20261013d`;
       });
     </script>
   </body>
