@@ -61,7 +61,11 @@
           </button>
 
           <button onclick="selectFirmware('RADAREYE')" id="btn-radareye">
-            RadarEye V1.0.1
+            RadarEye 2.1-inch V1.0.1
+          </button>
+
+          <button onclick="selectFirmware('RADAREYE_28_TEST')" id="btn-radareye_28_test">
+            RadarEye 2.8-inch V1.0.1 (TEST)
           </button>
 
           <button onclick="selectFirmware('DROIDLINK_MAESTRO_C3')" id="btn-droidlink_maestro_c3">
@@ -257,6 +261,7 @@
           "magicpanel",
           "periscope",
           "radareye",
+          "radareye_28_test",
           "droidlink_maestro_c3",
           "droidlink_maestro_c3_v23",
           "droidlink_maestro_esp32",
@@ -287,6 +292,7 @@
           case "MAGICPANEL":
           case "PERISCOPE":
           case "RADAREYE":
+          case "RADAREYE_28_TEST":
           case "DROIDLINK_MAESTRO_C3":
           case "DROIDLINK_MAESTRO_C3_V23":
           case "DROIDLINK_MAESTRO_ESP32":
@@ -318,7 +324,7 @@
           setupRecovery.open = false;
         }
 
-        radarEyeSetup.hidden = type !== "RADAREYE";
+        radarEyeSetup.hidden = !["RADAREYE", "RADAREYE_28_TEST"].includes(type);
         if (radarEyeSetup.hidden) {
           radarEyeSetup.open = false;
         }
