@@ -2,15 +2,92 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>DroidLink Installer</title>
-    <link rel="stylesheet" href="./styles.css?v=20260924a" />
+    <link rel="stylesheet" href="./styles.css?v=20261118a" />
     <script
       type="module"
       src="https://unpkg.com/esp-web-tools@latest/dist/web/install-button.js"
     ></script>
   </head>
-  <body>
-    <div class="installer">
+  <body class="disclosure-locked">
+    <div
+      id="safety-disclosure"
+      class="disclosure-backdrop"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="disclosure-title"
+      aria-describedby="disclosure-summary"
+    >
+      <section class="disclosure-card">
+        <p class="disclosure-kicker">Required before using the Installer</p>
+        <h2 id="disclosure-title" tabindex="-1">
+          Important Safety and Liability Notice
+        </h2>
+
+        <p id="disclosure-summary" class="disclosure-lead">
+          DroidLink is a DIY hobby robotics control system. Its firmware can
+          operate motors, servos, moving mechanisms, batteries, lighting, and
+          other electrical equipment. Incorrect installation, configuration,
+          wiring, or operation may cause unexpected movement, equipment
+          damage, fire, serious injury, or death.
+        </p>
+
+        <p>By continuing, you acknowledge:</p>
+
+        <ul>
+          <li>You install and operate DroidLink entirely at your own risk.</li>
+          <li>
+            You are responsible for correct hardware, wiring, fusing,
+            mechanical limits, testing, supervision, backups, and an
+            accessible physical power disconnect.
+          </li>
+          <li>
+            Current, Beta, fallback, and legacy firmware may contain errors,
+            fail unexpectedly, or behave differently after an update.
+          </li>
+          <li>
+            DroidLink software, firmware, documentation, and the Installer are
+            provided <strong>“AS IS” and “WITH ALL FAULTS,” without warranties</strong>,
+            to the maximum extent permitted by applicable law.
+          </li>
+          <li>
+            To the maximum extent permitted by applicable law, DroidLink’s
+            developer and contributors are not responsible for injury,
+            property damage, data loss, equipment failure, or other losses
+            resulting from installation or use.
+          </li>
+          <li>
+            Nothing in this notice excludes or limits liability that cannot
+            legally be excluded or limited.
+          </li>
+        </ul>
+
+        <p class="disclosure-warning">
+          If you do not understand or accept these conditions, do not continue.
+        </p>
+
+        <label class="disclosure-acceptance" for="disclosure-checkbox">
+          <input id="disclosure-checkbox" type="checkbox" />
+          <span>
+            I have read and understand this notice. I accept responsibility
+            for safe installation and operation and agree to continue at my
+            own risk.
+          </span>
+        </label>
+
+        <button id="disclosure-continue" type="button" disabled>
+          I Understand and Accept — Continue
+        </button>
+      </section>
+    </div>
+
+    <div
+      id="installer-content"
+      class="installer"
+      inert
+      aria-hidden="true"
+    >
       <h1>DroidLink Installer</h1>
 
       <img
@@ -107,7 +184,7 @@
         <div class="installer-options-row">
           <label class="license-entry">
             License Key:
-            <input id="license" />
+            <input id="license" disabled />
           </label>
 
           <div class="legacy-entry">
@@ -183,7 +260,9 @@
         </div>
 
         <esp-web-install-button id="install" class="install-btn">
-          <button slot="activate">Install Firmware</button>
+          <button id="install-activate" slot="activate" disabled>
+            Install Firmware
+          </button>
         </esp-web-install-button>
 
         <details id="setup-recovery" class="setup-recovery" hidden>
@@ -232,15 +311,68 @@
           DroidLink Start Here: Hardware, Licensing, and Setup
         </a>
       </div>
+
+      <div class="footer-link">
+        <a href="#" id="review-disclosure">
+          Review Safety and Liability Notice
+        </a>
+      </div>
     </div>
 
     <script>
       const button = document.getElementById("install");
+      const installActivate = document.getElementById("install-activate");
+      const installerContent = document.getElementById("installer-content");
+      const licenseInput = document.getElementById("license");
+      const disclosure = document.getElementById("safety-disclosure");
+      const disclosureTitle = document.getElementById("disclosure-title");
+      const disclosureCheckbox = document.getElementById("disclosure-checkbox");
+      const disclosureContinue = document.getElementById("disclosure-continue");
+      const reviewDisclosure = document.getElementById("review-disclosure");
       let selectedFirmware = null;
       let activeLicense = "";
       let installSessionId = "";
+      let disclosureAccepted = false;
       const gatekeeperHost = "droidlink-gatekeeper.fmoore1124.workers.dev";
       const originalFetch = window.fetch.bind(window);
+
+      function updateDisclosureContinue() {
+        disclosureContinue.disabled = !disclosureCheckbox.checked;
+      }
+
+      function showDisclosure() {
+        disclosureAccepted = false;
+        disclosureCheckbox.checked = false;
+        updateDisclosureContinue();
+        document.body.classList.add("disclosure-locked");
+        installerContent.setAttribute("inert", "");
+        installerContent.setAttribute("aria-hidden", "true");
+        licenseInput.disabled = true;
+        installActivate.disabled = true;
+        disclosure.hidden = false;
+        disclosureTitle.focus();
+      }
+
+      function acceptDisclosure() {
+        if (!disclosureCheckbox.checked) return;
+
+        disclosureAccepted = true;
+        disclosure.hidden = true;
+        document.body.classList.remove("disclosure-locked");
+        installerContent.removeAttribute("inert");
+        installerContent.removeAttribute("aria-hidden");
+        licenseInput.disabled = false;
+        installActivate.disabled = false;
+        document.querySelector(".firmware-select button").focus();
+      }
+
+      disclosureCheckbox.addEventListener("change", updateDisclosureContinue);
+      disclosureContinue.addEventListener("click", acceptDisclosure);
+      reviewDisclosure.addEventListener("click", (event) => {
+        event.preventDefault();
+        showDisclosure();
+      });
+      disclosureTitle.focus();
 
       // Only send private authorization data to DroidLink Gatekeeper.
       window.fetch = (resource, options = {}) => {
@@ -276,6 +408,8 @@
       };
 
       function selectFirmware(type) {
+        if (!disclosureAccepted) return;
+
         const logo = document.getElementById("device-logo");
         const setupRecovery = document.getElementById("setup-recovery");
         const radarEyeSetup = document.getElementById("radareye-setup");
@@ -388,8 +522,14 @@
           .classList.add("active");
       }
 
-      button.addEventListener("click", () => {
-        const license = document.getElementById("license").value.trim();
+      button.addEventListener("click", (event) => {
+        if (!disclosureAccepted) {
+          event.preventDefault();
+          showDisclosure();
+          return;
+        }
+
+        const license = licenseInput.value.trim();
 
         if (!license) {
           alert("License key required");
