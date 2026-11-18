@@ -52,6 +52,13 @@
             Watch Display V2.3.0 (Beta)
           </button>
 
+          <button
+            onclick="selectFirmware('DISPLAY_LARGE_V21')"
+            id="btn-display_large_v21"
+          >
+            Large Display V2.1.0 (Beta)
+          </button>
+
           <button onclick="selectFirmware('MAGICPANEL')" id="btn-magicpanel">
             MagicPanel V1.0 (Current)
           </button>
@@ -290,6 +297,7 @@
           "display_amoled_v21",
           "display_amoled_v22",
           "display_amoled_v23",
+          "display_large_v21",
           "magicpanel",
           "magicpanel_v110",
           "periscope",
@@ -340,6 +348,7 @@
           case "DROIDLINK_AP_MA":
           case "DROIDLINK_AP_MA_V23":
           case "DROIDLINK_AP_MA_V25":
+          case "DISPLAY_LARGE_V21":
             logo.style.display = "none";
             break;
 
@@ -398,7 +407,7 @@
         installSessionId = crypto.randomUUID();
 
         // ✅ FIXED LINE
-        button.manifest = `https://droidlink.github.io/DroidLink_Installer/manifest/${selectedFirmware.toLowerCase()}.json?v=20261118d`;
+        button.manifest = `https://droidlink.github.io/DroidLink_Installer/manifest/${selectedFirmware.toLowerCase()}.json?v=20261118e`;
       });
     </script>
   </body>
