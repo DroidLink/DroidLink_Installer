@@ -25,17 +25,17 @@
 
         <div class="firmware-select">
           <button
-            onclick="selectFirmware('MASTER_V201')"
-            id="btn-master_v201"
-          >
-            Master Controller V2.0.1 (Fallback)
-          </button>
-
-          <button
             onclick="selectFirmware('MASTER_V22')"
             id="btn-master_v22"
           >
             Master Controller V2.2.0 (Current)
+          </button>
+
+          <button
+            onclick="selectFirmware('MASTER_V23')"
+            id="btn-master_v23"
+          >
+            Master Controller V2.3.0 (Beta)
           </button>
 
           <button
@@ -100,6 +100,13 @@
             <details class="previous-firmware">
               <summary>Previous and Legacy Firmware</summary>
               <div class="previous-firmware-list">
+              <button
+                onclick="selectFirmware('MASTER_V201')"
+                id="btn-master_v201"
+              >
+                Master Controller V2.0.1 (Fallback)
+              </button>
+
               <button
                 onclick="selectFirmware('MASTER_V2')"
                 id="btn-master_v2"
@@ -247,6 +254,7 @@
           "master_v2",
           "master_v201",
           "master_v22",
+          "master_v23",
           "slavelatest",
           "slaveastro",
           "display",
@@ -272,6 +280,7 @@
           case "MASTER_V2":
           case "MASTER_V201":
           case "MASTER_V22":
+          case "MASTER_V23":
             logo.src = "images/master.jpeg";
             break;
 
@@ -347,7 +356,7 @@
         installSessionId = crypto.randomUUID();
 
         // ✅ FIXED LINE
-        button.manifest = `https://droidlink.github.io/DroidLink_Installer/manifest/${selectedFirmware.toLowerCase()}.json?v=20261013d`;
+        button.manifest = `https://droidlink.github.io/DroidLink_Installer/manifest/${selectedFirmware.toLowerCase()}.json?v=20261118a`;
       });
     </script>
   </body>
