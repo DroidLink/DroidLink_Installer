@@ -53,11 +53,19 @@
           </button>
 
           <button onclick="selectFirmware('MAGICPANEL')" id="btn-magicpanel">
-            MagicPanel V1.0
+            MagicPanel V1.0 (Current)
+          </button>
+
+          <button onclick="selectFirmware('MAGICPANEL_V110')" id="btn-magicpanel_v110">
+            MagicPanel V1.1.0 (Beta)
           </button>
 
           <button onclick="selectFirmware('PERISCOPE')" id="btn-periscope">
-            Periscope V1.0
+            Periscope V1.0 (Current)
+          </button>
+
+          <button onclick="selectFirmware('PERISCOPE_V110')" id="btn-periscope_v110">
+            Periscope V1.1.0 (Beta)
           </button>
 
           <button onclick="selectFirmware('RADAREYE')" id="btn-radareye">
@@ -271,7 +279,9 @@
           "display_amoled_v22",
           "display_amoled_v23",
           "magicpanel",
+          "magicpanel_v110",
           "periscope",
+          "periscope_v110",
           "radareye",
           "droidlink_maestro_c3",
           "droidlink_maestro_c3_v23",
@@ -302,7 +312,9 @@
             break;
 
           case "MAGICPANEL":
+          case "MAGICPANEL_V110":
           case "PERISCOPE":
+          case "PERISCOPE_V110":
           case "RADAREYE":
           case "DROIDLINK_MAESTRO_C3":
           case "DROIDLINK_MAESTRO_C3_V23":
@@ -365,7 +377,7 @@
         installSessionId = crypto.randomUUID();
 
         // ✅ FIXED LINE
-        button.manifest = `https://droidlink.github.io/DroidLink_Installer/manifest/${selectedFirmware.toLowerCase()}.json?v=20261118b`;
+        button.manifest = `https://droidlink.github.io/DroidLink_Installer/manifest/${selectedFirmware.toLowerCase()}.json?v=20261118c`;
       });
     </script>
   </body>
