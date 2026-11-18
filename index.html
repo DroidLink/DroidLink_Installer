@@ -76,24 +76,24 @@
             DroidLink Slave - ESP32-C3 Super Mini V2.4.0 (Current)
           </button>
 
-          <button onclick="selectFirmware('DROIDLINK_MAESTRO_C3_V23')" id="btn-droidlink_maestro_c3_v23">
-            DroidLink Slave - ESP32-C3 Super Mini V2.3.0 (Fallback)
+          <button onclick="selectFirmware('DROIDLINK_MAESTRO_C3_V25')" id="btn-droidlink_maestro_c3_v25">
+            DroidLink Slave - ESP32-C3 Super Mini V2.5.0 (Beta)
           </button>
 
           <button onclick="selectFirmware('DROIDLINK_MAESTRO_ESP32')" id="btn-droidlink_maestro_esp32">
             DroidLink Slave - ESP32 DevKit V2.4.0 (Current)
           </button>
 
-          <button onclick="selectFirmware('DROIDLINK_MAESTRO_ESP32_V23')" id="btn-droidlink_maestro_esp32_v23">
-            DroidLink Slave - ESP32 DevKit V2.3.0 (Fallback)
+          <button onclick="selectFirmware('DROIDLINK_MAESTRO_ESP32_V25')" id="btn-droidlink_maestro_esp32_v25">
+            DroidLink Slave - ESP32 DevKit V2.5.0 (Beta)
           </button>
 
           <button onclick="selectFirmware('DROIDLINK_AP_MA')" id="btn-droidlink_ap_ma">
             DroidLink_AP V2.4.0 (Current)
           </button>
 
-          <button onclick="selectFirmware('DROIDLINK_AP_MA_V23')" id="btn-droidlink_ap_ma_v23">
-            DroidLink_AP V2.3.0 (Fallback)
+          <button onclick="selectFirmware('DROIDLINK_AP_MA_V25')" id="btn-droidlink_ap_ma_v25">
+            DroidLink_AP V2.5.0 (Beta)
           </button>
         </div>
 
@@ -139,6 +139,18 @@
                 id="btn-display_amoled_v21"
               >
                 Watch Display V2.1.0 (Fallback)
+              </button>
+
+              <button onclick="selectFirmware('DROIDLINK_MAESTRO_C3_V23')" id="btn-droidlink_maestro_c3_v23">
+                DroidLink Slave - ESP32-C3 Super Mini V2.3.0 (Fallback)
+              </button>
+
+              <button onclick="selectFirmware('DROIDLINK_MAESTRO_ESP32_V23')" id="btn-droidlink_maestro_esp32_v23">
+                DroidLink Slave - ESP32 DevKit V2.3.0 (Fallback)
+              </button>
+
+              <button onclick="selectFirmware('DROIDLINK_AP_MA_V23')" id="btn-droidlink_ap_ma_v23">
+                DroidLink_AP V2.3.0 (Fallback)
               </button>
 
               <button
@@ -285,10 +297,13 @@
           "radareye",
           "droidlink_maestro_c3",
           "droidlink_maestro_c3_v23",
+          "droidlink_maestro_c3_v25",
           "droidlink_maestro_esp32",
           "droidlink_maestro_esp32_v23",
+          "droidlink_maestro_esp32_v25",
           "droidlink_ap_ma",
           "droidlink_ap_ma_v23",
+          "droidlink_ap_ma_v25",
         ].forEach((id) => {
           document.getElementById("btn-" + id).classList.remove("active");
         });
@@ -318,10 +333,13 @@
           case "RADAREYE":
           case "DROIDLINK_MAESTRO_C3":
           case "DROIDLINK_MAESTRO_C3_V23":
+          case "DROIDLINK_MAESTRO_C3_V25":
           case "DROIDLINK_MAESTRO_ESP32":
           case "DROIDLINK_MAESTRO_ESP32_V23":
+          case "DROIDLINK_MAESTRO_ESP32_V25":
           case "DROIDLINK_AP_MA":
           case "DROIDLINK_AP_MA_V23":
+          case "DROIDLINK_AP_MA_V25":
             logo.style.display = "none";
             break;
 
@@ -339,10 +357,13 @@
         setupRecovery.hidden = ![
           "DROIDLINK_MAESTRO_C3",
           "DROIDLINK_MAESTRO_C3_V23",
+          "DROIDLINK_MAESTRO_C3_V25",
           "DROIDLINK_MAESTRO_ESP32",
           "DROIDLINK_MAESTRO_ESP32_V23",
+          "DROIDLINK_MAESTRO_ESP32_V25",
           "DROIDLINK_AP_MA",
           "DROIDLINK_AP_MA_V23",
+          "DROIDLINK_AP_MA_V25",
         ].includes(type);
         if (setupRecovery.hidden) {
           setupRecovery.open = false;
@@ -377,7 +398,7 @@
         installSessionId = crypto.randomUUID();
 
         // ✅ FIXED LINE
-        button.manifest = `https://droidlink.github.io/DroidLink_Installer/manifest/${selectedFirmware.toLowerCase()}.json?v=20261118c`;
+        button.manifest = `https://droidlink.github.io/DroidLink_Installer/manifest/${selectedFirmware.toLowerCase()}.json?v=20261118d`;
       });
     </script>
   </body>
