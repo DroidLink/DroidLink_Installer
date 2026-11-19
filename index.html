@@ -336,39 +336,6 @@
       const gatekeeperHost = "droidlink-gatekeeper.fmoore1124.workers.dev";
       const originalFetch = window.fetch.bind(window);
 
-      // The Waveshare Large Display uses a CH343 USB-UART bridge with DTR
-      // driving RESET and RTS driving GPIO0/BOOT. That differs from the reset
-      // wiring assumed by ESP Web Tools. Keep RTS released while DTR is pulsed
-      // so the ESP32-S3 starts DroidLink instead of the ROM downloader. Keep
-      // the stock ESP Web Tools behavior for every other product.
-      customElements.whenDefined("ewt-console").then(() => {
-        const EwtConsole = customElements.get("ewt-console");
-        const stockReset = EwtConsole.prototype.reset;
-
-        EwtConsole.prototype.reset = async function () {
-          if (selectedFirmware !== "DISPLAY_LARGE_V21") {
-            return stockReset.call(this);
-          }
-
-          const setResetSignals = (dataTerminalReady) =>
-            this.port.setSignals({
-              dataTerminalReady,
-              requestToSend: false,
-              break: false,
-            });
-          const wait = (milliseconds) =>
-            new Promise((resolve) => setTimeout(resolve, milliseconds));
-
-          // Release GPIO0 first, hold RESET low briefly, then release RESET.
-          // The existing console read loop remains open and captures reboot.
-          await setResetSignals(false);
-          await wait(50);
-          await setResetSignals(true);
-          await wait(150);
-          await setResetSignals(false);
-        };
-      });
-
       function updateDisclosureContinue() {
         disclosureContinue.disabled = !disclosureCheckbox.checked;
       }
